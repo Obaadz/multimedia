@@ -1,8 +1,8 @@
 import express from "express";
-import usersRoutes from "./users";
+import mediaRoutes from "./media";
 
 const v1Routes = express.Router();
 
-v1Routes.use("/v1", usersRoutes);
+v1Routes.use("/v1", mediaRoutes);
 
 export default v1Routes;

@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 5000,
 
 const app = express();
 const bodyParser = {
-  urlencoded: express.urlencoded({ limit: "5mb", extended: true }),
-  json: express.json({ limit: "5mb" }),
+  urlencoded: express.urlencoded({ limit: "50mb", extended: true }),
+  json: express.json({ limit: "50mb" }),
 };
 
 app.use(bodyParser.urlencoded);
