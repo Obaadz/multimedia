@@ -29,18 +29,26 @@ export default class MediaController {
   }
 
   static async getMediaPaths(req: Request, res: Response) {
-    const medias = await findMedia({});
+    try {
+      const medias = await findMedia({});
 
-    res.status(200).send({ medias });
+      res.status(200).send({ medias });
+    } catch (err) {
+      res.status(404).send(ERROR_MESSAGES.INCORRECT_MEDIA + " getMediaPaths");
+    }
   }
 
   static async getMedia(req: Request, res: Response) {
-    const id = req.params.id;
-    const media = await findMedia({ _id: id });
+    try {
+      const id = req.params.id;
+      const media = await findMedia({ _id: id });
 
-    const video = fs.readFileSync(media.path);
+      const video = fs.readFileSync(media.path);
 
-    res.writeHead(200, { "Content-Type": media.type });
-    res.end(video, "binary");
+      res.writeHead(200, { "Content-Type": media.type });
+      res.end(video, "binary");
+    } catch (err) {
+      res.status(404).send(ERROR_MESSAGES.INCORRECT_MEDIA + " getMedia");
+    }
   }
 }
