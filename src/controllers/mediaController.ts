@@ -13,9 +13,15 @@ export default class MediaController {
       if (!video) throw new Error(ERROR_MESSAGES.INCORRECT_MEDIA);
 
       await compressVideo(video.path, video.path + ".mp4");
-
+      console.log(video.path + ".mp4");
+      console.log("the above is video path");
       fs.unlinkSync(video.path);
-      await insertMedia({ type: video.mimetype, path: video.path + ".mp4" });
+      const vmedia = await insertMedia({
+        type: video.mimetype,
+        path: video.path + ".mp4",
+      });
+      console.log(vmedia._id);
+      console.log("the above is vmedia id");
       res.status(200).send("OK");
     } catch (err: any) {
       res.status(404).send(ERROR_MESSAGES.INCORRECT_MEDIA);
