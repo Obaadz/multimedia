@@ -3,7 +3,7 @@ import { IMediaDocument } from "../types/media";
 
 export const mediaSchema = new Schema({
   type: { type: String, required: true },
-  file: { type: Types.Buffer, required: true },
+  path: { type: String, required: true },
 });
 
 const Media =

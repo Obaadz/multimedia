@@ -1,8 +1,8 @@
 import { Document } from "mongoose";
 
 export type Media = {
+  path: string;
   type: string;
-  file: Buffer;
 };
 
 export interface IMediaDocument extends Document, Media {}
