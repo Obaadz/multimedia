@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { ERROR_MESSAGES } from "../types/enums";
-import { compressVideo, findMedia, insertMedia } from "../services/media";
+import { compressVideo, findMedia, findMedias, insertMedia } from "../services/media";
 import { Media } from "../types/media";
 import fs from "fs";
 import ffmpeg from "fluent-ffmpeg";
@@ -30,7 +30,7 @@ export default class MediaController {
 
   static async getMediaPaths(req: Request, res: Response) {
     try {
-      const medias = await findMedia({});
+      const medias = await findMedias({});
 
       res.status(200).send({ medias });
     } catch (err) {
